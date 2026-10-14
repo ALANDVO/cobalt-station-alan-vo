@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "name": "cobalt-station-alan-vo",
+  "owner": "ALANDVO",
+  "email": "alanvo@gmail.com",
+  "domain": "AI/ML developer tools",
+  "summary": "Work in progress: cobalt-station-alan-vo",
+  "workflows": [
+    "Synthesize multilingual speech from text using XTTS v2 (646+ languages)",
+    "Clone voices from reference audio for personalized TTS",
+    "Transcribe audio/video with Faster-Whisper (99+ languages)",
+    "Dub videos by transcribing, translating, and re-synthesizing audio",
+    "Create audiobooks from EPUB/PDF/TXT documents with chapter-aware synthesis"
+  ],
+  "auth": "oidc-keycloak-saml-broker",
+  "llm_providers": [
+    "openai-compatible",
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "status": "work-in-progress"
+}
