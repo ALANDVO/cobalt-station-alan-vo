@@ -1,5 +1,13 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+declare global {
+  interface ImportMetaEnv {
+    readonly VITE_API_URL: string
+  }
+  interface ImportMeta {
+    readonly env: ImportMetaEnv
+  }
+}
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 export interface TTSRequest {
   text: string
   language: string

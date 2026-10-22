@@ -30,6 +30,9 @@ class TTSService:
         self._cache_dir.mkdir(parents=True, exist_ok=True)
 
         try:
+            import os
+            # Accept CPML license non-interactively via env var
+            os.environ["COQUI_TOS_AGREED"] = "1"
             self._tts = TTS(
                 model_name=self._model_name,
                 progress_bar=True,
@@ -103,6 +106,11 @@ class TTSService:
             language=request.language,
             text_length=len(request.text),
         )
+def get_tts_service() -> TTSService:
+    """Get or create TTS service instance (lazy initialization)."""
+    if not hasattr(get_tts_service, "_instance"):
+        get_tts_service._instance = TTSService()
+    return get_tts_service._instance
 
 
-tts_service = TTSService()
+tts_service = get_tts_service()

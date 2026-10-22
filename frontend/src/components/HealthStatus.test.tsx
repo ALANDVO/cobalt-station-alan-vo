@@ -15,7 +15,6 @@ const mockHealthCheck = vi.mocked(apiClient.healthCheck)
 describe('HealthStatus', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    vi.useFakeTimers()
   })
 
   it('shows loading state initially', () => {

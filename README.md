@@ -1,4 +1,4 @@
-# VoiceStudio
+# VoiceStudio — Alan Vo
 
 > Work in progress. This checkpoint may be incomplete or fail tests. See PLAN.md and STATUS.md before use.
 
@@ -87,9 +87,9 @@ Content-Type: application/json
   "speaker_wav": null,  // optional: base64 reference audio for cloning
   "speed": 1.0
 }
+```
 
 Response: audio/wav
-```
 
 ## Architecture
 

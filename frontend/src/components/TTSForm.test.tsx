@@ -100,7 +100,7 @@ describe('TTSForm', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: 'Download WAV' })).toBeInTheDocument()
-      expect(screen.getByText('Duration: 1.5s')).toBeInTheDocument()
+      expect(screen.getByText(/Duration: 1\.5s/)).toBeInTheDocument()
     })
   })
 

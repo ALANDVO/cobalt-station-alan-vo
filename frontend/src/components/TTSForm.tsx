@@ -135,8 +135,9 @@ export function TTSForm() {
       </div>
 
       <div className="form-group">
-        <label className="form-label">Reference Audio (Optional - Voice Cloning)</label>
+        <label htmlFor="speaker-wav" className="form-label">Reference Audio (Optional - Voice Cloning)</label>
         <input
+          id="speaker-wav"
           type="file"
           accept=".wav"
           onChange={handleFileChange}
@@ -207,6 +208,7 @@ function AudioPlayer({ audioBase64, duration, sampleRate }: { audioBase64: strin
           download={`voicestudio-${Date.now()}.wav`}
           className="btn btn-secondary"
           style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}
+          role="button"
         >
           Download WAV
         </a>
