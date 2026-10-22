@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 import logging
 
 from app.models.tts import TTSRequest, TTSResponse, HealthResponse
-from app.services.tts_service import tts_service
+from app.services.tts_service import get_tts_service
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
@@ -18,7 +18,7 @@ router = APIRouter(prefix="/api/v1/tts", tags=["tts"])
 )
 async def synthesize(request: TTSRequest) -> TTSResponse:
     try:
-        return tts_service.synthesize(request)
+        return get_tts_service().synthesize(request)
     except RuntimeError as e:
         logger.error(f"TTS error: {e}")
         raise HTTPException(
@@ -40,8 +40,8 @@ async def synthesize(request: TTSRequest) -> TTSResponse:
 )
 async def tts_health() -> HealthResponse:
     return HealthResponse(
-        status="healthy" if tts_service.is_loaded() else "degraded",
+        status="healthy" if get_tts_service().is_loaded() else "degraded",
         version="0.1.0",
-        tts_model_loaded=tts_service.is_loaded(),
-        device=tts_service.get_device(),
+        tts_model_loaded=get_tts_service().is_loaded(),
+        device=get_tts_service().get_device(),
     )

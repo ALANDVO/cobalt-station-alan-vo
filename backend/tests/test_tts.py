@@ -28,9 +28,9 @@ class TestTTSModels:
 
     def test_tts_request_invalid_speed(self):
         with pytest.raises(ValueError):
-            TTSRequest(text="Hello", language="en", speed=3.0)
+            TTSRequest(text="Hello", language="en", speed=5.0)
         with pytest.raises(ValueError):
-            TTSRequest(text="Hello", language="en", speed=0.3)
+            TTSRequest(text="Hello", language="en", speed=0.1)
 
     def test_tts_request_invalid_base64(self):
         with pytest.raises(ValueError):
@@ -118,8 +118,8 @@ class TestTTSAPI:
 
 class TestTTSIntegration:
     @pytest.mark.asyncio
-    @patch("app.services.tts_service.tts_service")
-    async def test_synthesize_mocked(self, mock_service):
+    @patch("app.api.tts.get_tts_service")
+    async def test_synthesize_mocked(self, mock_get_service):
         mock_response = TTSResponse(
             audio_base64="dGVzdA==",
             duration_seconds=1.5,
@@ -127,8 +127,10 @@ class TestTTSIntegration:
             language="en",
             text_length=4,
         )
+        mock_service = mock_get_service.return_value
         mock_service.synthesize.return_value = mock_response
         mock_service.is_loaded.return_value = True
+        mock_service.get_device.return_value = "cpu"
 
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as client:

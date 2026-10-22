@@ -10,7 +10,7 @@ skeleton-tts
 
 ### skeleton-tts — FastAPI/React skeleton with basic TTS synthesis workflow
 
-Status: in_progress
+Status: done
 
 Acceptance:
 - FastAPI backend runs with /health and /api/v1/tts/synthesize endpoints
@@ -19,6 +19,10 @@ Acceptance:
 - Docker compose runs backend, frontend, and Keycloak
 - Backend and frontend tests pass
 - README has install/run/test steps
+
+Implementation: `backend/app/main.py`, `backend/app/api/tts.py`, `backend/app/services/tts_service.py`, `backend/app/models/tts.py`, `backend/app/core/config.py`, `frontend/src/App.tsx`, `frontend/src/components/TTSForm.tsx`, `frontend/src/components/HealthStatus.tsx`, `frontend/src/api/client.ts`, `compose.yaml`, `backend/Dockerfile`, `frontend/Dockerfile`, `.github/workflows/ci.yml`
+
+Tests: `backend/tests/test_main.py`, `backend/tests/test_tts.py`, `frontend/src/components/TTSForm.test.tsx`, `frontend/src/components/HealthStatus.test.tsx`, `frontend/src/App.test.tsx`
 
 ### voice-cloning — Voice cloning with reference audio
 

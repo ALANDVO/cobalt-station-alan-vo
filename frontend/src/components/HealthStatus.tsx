@@ -1,26 +1,33 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { apiClient, HealthResponse } from '@/api/client'
 
 export function HealthStatus() {
   const [health, setHealth] = useState<HealthResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
+    let mounted = true
+
     const checkHealth = async () => {
+      if (!mounted) return
       try {
         const data = await apiClient.healthCheck()
-        setHealth(data)
+        if (mounted) setHealth(data)
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Health check failed')
+        if (mounted) setError(err instanceof Error ? err.message : 'Health check failed')
       } finally {
-        setLoading(false)
+        if (mounted) setLoading(false)
       }
     }
 
     checkHealth()
-    const interval = setInterval(checkHealth, 30000)
-    return () => clearInterval(interval)
+    intervalRef.current = setInterval(checkHealth, 30000)
+    return () => {
+      mounted = false
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [])
 
   if (loading) {
