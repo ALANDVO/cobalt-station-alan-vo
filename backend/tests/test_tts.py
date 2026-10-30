@@ -16,7 +16,18 @@ class TestTTSModels:
         assert req.speaker_wav is None
 
     def test_tts_request_with_speaker(self):
-        wav_data = b"RIFF" + b"\x00" * 44
+        # Valid minimal WAV header: RIFF + size + WAVE + fmt chunk
+        wav_data = (
+            b"RIFF" + (36).to_bytes(4, "little") + b"WAVE"
+            + b"fmt " + (16).to_bytes(4, "little")
+            + (1).to_bytes(2, "little")  # PCM
+            + (1).to_bytes(2, "little")  # 1 channel
+            + (8000).to_bytes(4, "little")  # sample rate
+            + (16000).to_bytes(4, "little")  # byte rate
+            + (2).to_bytes(2, "little")  # block align
+            + (16).to_bytes(2, "little")  # bits per sample
+            + b"data" + (0).to_bytes(4, "little")  # empty data chunk
+        )
         b64 = base64.b64encode(wav_data).decode()
         req = TTSRequest(text="Hello", language="es", speaker_wav=b64, speed=1.2)
         assert req.speaker_wav == b64

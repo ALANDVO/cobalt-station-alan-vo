@@ -49,3 +49,4 @@ logs/
 # Model cache (large files)
 ~/.local/share/tts/
 models/
+venv/
