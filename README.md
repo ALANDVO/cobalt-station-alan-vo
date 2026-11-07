@@ -220,3 +220,7 @@ See [CHANGELOG.md](CHANGELOG.md).
 ## License
 
 MIT © 2026 Alan Vo <alanvo@gmail.com>
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

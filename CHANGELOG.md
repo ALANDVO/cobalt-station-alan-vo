@@ -46,3 +46,7 @@ Partial code published for continued development. Known issues: STATUS.md.
 - Project initialization
 - Feature plan and roadmap (PLAN.md)
 - Core configuration files
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

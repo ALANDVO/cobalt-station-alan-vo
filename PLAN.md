@@ -71,3 +71,6 @@ Acceptance:
 - Frontend PKCE login flow
 - Role-based access (viewer/operator/admin)
 
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)
