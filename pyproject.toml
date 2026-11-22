@@ -1,6 +1,6 @@
 [project]
 name = "voicestudio"
-version = "1.5.0"
+version = "1.6.0"
 description = "VoiceStudio - Open-source, fully-local ElevenLabs alternative for voice cloning, TTS, transcription, dubbing, and audiobook creation"
 readme = "README.md"
 license = {text = "MIT"}
