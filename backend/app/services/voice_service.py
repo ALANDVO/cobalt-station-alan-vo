@@ -1,4 +1,5 @@
 import base64
+import uuid
 import io
 import logging
 from pathlib import Path
@@ -31,7 +32,6 @@ def upload_voice_profile(name: str, description: str, reference_audio_b64: str) 
 
     # Generate a unique ID and save
     profile = VoiceProfile(
-        id=str(uuid.uuid4()),
         id=str(uuid.uuid4()),
         name=name or f"Voice {len(list_voices()) + 1}",
         description=description or "",
